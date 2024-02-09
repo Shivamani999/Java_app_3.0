@@ -80,8 +80,8 @@ pipeline{
                     def USERNAME = "admin"
                     def PASSWORD = "Shivamani99"
                     echo "Starting Jfrog using Creds:"
-                    echo "Username:" $USERNAME
-                    echo "Password:" $PASSWORD
+                    echo "Username: $USERNAME"
+                    echo "Password: $PASSWORD"
                 }
             }
         }
