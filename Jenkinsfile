@@ -20,7 +20,7 @@ pipeline{
             steps{
             gitCheckout(
                 branch: "main",
-                url: "https://github.com/praveen1994dec/Java_app_3.0.git"
+                url: "https://github.com/Shivamani999/Java_app_3.0.git"
             )
             }
         }
@@ -71,6 +71,34 @@ pipeline{
                    
                    mvnBuild()
                }
+            }
+        }
+        stage('Connect to JFrog') {
+         when { expression {  params.action == 'create' } }
+            steps {
+                script {
+                    def USERNAME = "admin"
+                    def PASSWORD = "Shivamani99"
+                    echo "Starting Jfrog using Creds:"
+                    echo "Username:" $USERNAME
+                    echo "Password:" $PASSWORD
+                }
+            }
+        }
+        stage('Push Artifact to JFrog') {
+         when { expression {  params.action == 'create' } }
+            steps {
+                script {
+                    // Set variables
+                    def ARTIFACTORY_URL = "http://192.168.0.101:8082/ui/repos/tree/General/"
+                    def REPOSITORY = "my-repo"
+                    def USERNAME = "admin"
+                    def PASSWORD = "Shivamani99"
+                    def FILE_PATH = "target/*.jar"
+
+                    // Upload the file using curl
+                    sh "curl -u ${USERNAME}:${PASSWORD} -T ${FILE_PATH} \"${ARTIFACTORY_URL}/${REPOSITORY}/your-file.jar\""
+                }
             }
         }
         stage('Docker Image Build'){
