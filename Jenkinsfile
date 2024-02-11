@@ -97,7 +97,7 @@ pipeline{
                     def FILE_PATH = "target/*.jar"
 
                     // Upload the file using curl
-                    sh "curl -u ${USERNAME}:${PASSWORD} -T ${FILE_PATH} \"${ARTIFACTORY_URL}/${REPOSITORY}""
+                    sh "curl -u ${USERNAME}:${PASSWORD} -T ${FILE_PATH} \"${ARTIFACTORY_URL}/${REPOSITORY}\""
                 }
             }
         }
