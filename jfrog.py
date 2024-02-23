@@ -5,10 +5,10 @@ import subprocess
 
 def jfrogUpload() :
     # define the url file path, and authentication credentials and change ur IP Address
-    url = 'http://<IP Address>:8082/artifactory/example-repo-local/kubernetes-configmap-reload-0.0.1-SNAPSHOT.jar'
+    url = 'http://192.168.1.13:8082/artifactory/example-repo-local/kubernetes-configmap-reload-0.0.1-SNAPSHOT.jar'
     file_path = '/var/lib/jenkins/workspace/java-3.0/target/kubernetes-configmap-reload-0.0.1-SNAPSHOT.jar'
     username = 'admin'
-    password = 'password' #replace 'your password with ur actual password'
+    password = 'Shivamani99' #replace 'your password with ur actual password'
 
     #send the PUT request with authentication and file upload
     with open(file_path, 'rb') as file:
@@ -22,7 +22,7 @@ def jfrogUpload() :
         print(response.text)
 def mvnBuild() :
     #define the Maven Command
-    maven_command = "mvn clena install -DskipTests"
+    maven_command = "mvn clean install -DskipTests"
 
     #Run the maven command as a subprocess
     try:
