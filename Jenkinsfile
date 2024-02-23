@@ -85,19 +85,27 @@ pipeline{
                 }
             }
         }
-        stage('Push Artifact to JFrog') {
-         when { expression {  params.action == 'create' } }
-            steps {
-                script {
-                    // Set variables
-                    def ARTIFACTORY_URL = "http://192.168.1.13:8082/artifactory"
-                    def REPOSITORY = "example-repo-local/"
-                    def USERNAME = "admin"
-                    def PASSWORD = "Shivamani99"
-                    def FILE_PATH = "target/*.jar"
+        // stage('Push Artifact to JFrog') {
+        //  when { expression {  params.action == 'create' } }
+        //     steps {
+        //         script {
+        //             // Set variables
+        //             def ARTIFACTORY_URL = "http://192.168.1.13:8082/artifactory"
+        //             def REPOSITORY = "example-repo-local/"
+        //             def USERNAME = "admin"
+        //             def PASSWORD = "Shivamani99"
+        //             def FILE_PATH = "target/*.jar"
 
-                    // Upload the file using curl
-                    sh "curl -u ${USERNAME}:${PASSWORD} -T ${FILE_PATH} \"${ARTIFACTORY_URL}/${REPOSITORY}\""
+        //             // Upload the file using curl
+        //             sh "curl -u ${USERNAME}:${PASSWORD} -T ${FILE_PATH} \"${ARTIFACTORY_URL}/${REPOSITORY}\""
+        //         }
+        //     }
+        // }
+        stage ('Pushing Jar to Jfrog : python'){
+          when { expression {  params.action == 'create' } }
+          steps{
+            script{
+                jfrogPush()
                 }
             }
         }
